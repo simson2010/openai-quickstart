@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Something went wrong!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
+    <style>
+        html{
+            background-color: rgb(177, 169, 169);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-message">
+        <p class="message-primary">File Format Incorrect</p>
+        <p class="message-secondary">
+            Please select only PDF file instead.
+        </p>
+    </div>
+    <div class="back-button">
+        <a href="/"><button>Back</button></a>
+    </div>
+</body>
+</html>
