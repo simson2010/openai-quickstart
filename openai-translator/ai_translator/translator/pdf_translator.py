@@ -1,8 +1,8 @@
 from typing import Optional
-from model import Model
-from translator.pdf_parser import PDFParser
-from translator.writer import Writer
-from utils import LOG
+from ai_translator.model import Model
+from ai_translator.translator.pdf_parser import PDFParser
+from ai_translator.translator.writer import Writer
+from ai_translator.utils import LOG
 
 class PDFTranslator:
     def __init__(self, model: Model):
