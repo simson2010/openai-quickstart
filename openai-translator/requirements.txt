@@ -7,3 +7,4 @@ reportlab
 pandas
 loguru
 openai
+flask
