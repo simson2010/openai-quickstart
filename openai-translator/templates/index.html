@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF Translator</title>
+</head>
+<body>
+    <h1>PDF Translator</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <label for="from_language">From Language:</label>
+        <select id="from_language" name="from_language">
+            <option value="en">English</option>
+            <option value="fr">French</option>
+            <!-- Add more language options -->
+        </select>
+        <br>
+        <label for="to_language">To Language:</label>
+        <select id="to_language" name="to_language">
+            <option value="es">Spanish</option>
+            <option value="de">German</option>
+            <!-- Add more language options -->
+        </select>
+        <br>
+        <label for="pdf_file">Select PDF File:</label>
+        <input type="file" id="pdf_file" name="pdf_file" accept=".pdf">
+        <br>
+        <button type="submit">Translate</button>
+    </form>
+</body>
+</html>
