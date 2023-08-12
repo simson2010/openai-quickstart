@@ -2,10 +2,10 @@ from ai_translator.book import ContentType
 
 class Model:
     def make_text_prompt(self, text: str, target_language: str) -> str:
-        return f"翻译为{target_language}：{text}"
+        return f"翻译为{target_language}, 保持间距（空格，分隔符, 回车符，换行符)：\n{text}"
 
     def make_table_prompt(self, table: str, target_language: str) -> str:
-        return f"翻译为{target_language}，保持间距（空格，分隔符），以表格形式返回：\n{table}"
+        return f"翻译为{target_language}，保持间距（空格，分隔符, 回车符，换行符，\n, 图片），以表格形式返回：\n{table}"
 
     def translate_prompt(self, content, target_language: str) -> str:
         if content.content_type == ContentType.TEXT:

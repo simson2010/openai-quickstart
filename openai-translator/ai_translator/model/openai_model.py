@@ -19,6 +19,7 @@ class OpenAIModel(Model):
                     response = openai.ChatCompletion.create(
                         model=self.model,
                         messages=[
+                            {"role":"system", "content":"You act as a Translation Master, you understand how to translate PDF file cotent into different language on the world. You would help me to translate PDF file content into my flavour language, and keep the text format and font-size and keep the architecture of each page. Make is consise and only feed me back the result"},
                             {"role": "user", "content": prompt}
                         ]
                     )
@@ -27,7 +28,7 @@ class OpenAIModel(Model):
                     response = openai.Completion.create(
                         model=self.model,
                         prompt=prompt,
-                        max_tokens=150,
+                        max_tokens=200,
                         temperature=0
                     )
                     translation = response.choices[0].text.strip()

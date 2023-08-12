@@ -9,9 +9,10 @@ class ContentType(Enum):
     IMAGE = auto()
 
 class Content:
-    def __init__(self, content_type, original, translation=None):
+    def __init__(self, content_type, original, is_title=False, translation=None):
         self.content_type = content_type
         self.original = original
+        self.is_title = istitle
         self.translation = translation
         self.status = False
 

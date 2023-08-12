@@ -23,4 +23,7 @@ class PDFTranslator:
                 # Update the content in self.book.pages directly
                 self.book.pages[page_idx].contents[content_idx].set_translation(translation, status)
 
+        #join lines to paragraph
+        ## ToDo: join lines to paragraph
+
         self.writer.save_translated_book(self.book, output_file_path, file_format)

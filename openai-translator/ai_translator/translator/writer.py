@@ -36,6 +36,9 @@ class Writer:
         # Create a new ParagraphStyle with the SimSun font
         simsun_style = ParagraphStyle('SimSun', fontName='SimSun', fontSize=12, leading=14)
 
+        # Create title style
+        simsun_title_style = ParagraphStyle('SimSun', fontName='SimSun', fontSize=18, leading=14)
+
         # Create a PDF document
         doc = SimpleDocTemplate(output_file_path, pagesize=pagesizes.letter)
         styles = getSampleStyleSheet()
@@ -53,7 +56,7 @@ class Writer:
 
                     elif content.content_type == ContentType.TABLE:
                         # Add table to the PDF
-                        table = content.translation
+                        table = f'\n\n{content.translation}'
                         table_style = TableStyle([
                             ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
                             ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),

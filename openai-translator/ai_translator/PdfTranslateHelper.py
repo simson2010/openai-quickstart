@@ -1,12 +1,17 @@
 from ai_translator.utils import ArgumentParser, ConfigLoader, LOG
 from ai_translator.model import GLMModel, OpenAIModel
 from ai_translator.translator import PDFTranslator
+import uuid
 
 class PdfTranslateHelper:
 
     model_name: str = 'gpt-3.5-turbo'
     openai_api_key: str = None
 
+    current_scheme: str = None
+    current_host: str = None
+    current_port: str = None
+    
     def __init__(self, config: dict):
         print('init Helper')
         
@@ -27,11 +32,15 @@ class PdfTranslateHelper:
 
         translator = PDFTranslator(model)
         
-        outFilePath = f'{root_path}/pdf_temp/out.pdf'
+        outFilePath = f'/static/pdfs/{str(uuid.uuid4())}_resultbook.pdf'
 
-        translator.translate_pdf(pdf_file_path=pdf_name, output_file_path=outFilePath)
+        diskFilePath = f'{root_path}{outFilePath}'
 
-        return outFilePath
+        httpDownloadPath = f'{self.current_scheme}://{self.current_host}{outFilePath}'
+
+        translator.translate_pdf(pdf_file_path=pdf_name, target_language=to_lang, output_file_path=diskFilePath)
+
+        return httpDownloadPath
     
 
     def _saveTranslatedBook():

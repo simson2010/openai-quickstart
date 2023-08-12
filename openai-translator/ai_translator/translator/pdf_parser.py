@@ -28,6 +28,8 @@ class PDFParser:
                 raw_text = pdf_page.extract_text()
                 tables = pdf_page.extract_tables()
 
+
+
                 # Remove each cell's content from the original text
                 for table_data in tables:
                     for row in table_data:
@@ -40,10 +42,11 @@ class PDFParser:
                     raw_text_lines = raw_text.splitlines()
                     cleaned_raw_text_lines = [line.strip() for line in raw_text_lines if line.strip()]
                     cleaned_raw_text = "\n".join(cleaned_raw_text_lines)
-
-                    text_content = Content(content_type=ContentType.TEXT, original=cleaned_raw_text)
-                    page.add_content(text_content)
-                    LOG.debug(f"[raw_text]\n {cleaned_raw_text}")
+                    for eachRawText in cleaned_raw_text_lines:
+                        text_content = Content(content_type=ContentType.TEXT, original=eachRawText)
+                        page.add_content(text_content)
+                    
+                    LOG.debug(f"[raw_text]\n\n {cleaned_raw_text}")
 
 
 
