@@ -49,7 +49,7 @@
         ```
         then open http://127.0.0.1:5000 to enjoy yourself.
 
-#### Access via WebService
+### Access via WebService
 
         You can access PDF translator via WebSerivce. You should pass below parameters to API: 
 
@@ -57,20 +57,21 @@
         - to_language: Target language to be translat to.
         - pdf_file: A path to your PDF file, to be upload to service. 
 
-        ```shell
-        $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.pdf" http://127.0.0.1:5000/translate
-
-        ```
-
-        Response: 
+#### Response: 
 
             - "file": Translated content would be saved to a new PDF file for download.
             - "status": Transalte status, 
             - 200: success 
             - 400: failed
             - "error": Error message returned when status is 400.
-        
-        ##### Success
+
+### Success Request:
+        ```shell
+        $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.pdf" http://127.0.0.1:5000/translate
+
+        ```
+
+##### Response
 
             ```JSON
             {
@@ -79,14 +80,14 @@
             }
             ```
 
-        ##### Failed
+##### Failed Request
 
             ```shell
             $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.csv" http://127.0.0.1:5000/translate
 
             ```
 
-        Response:
+#### Response:
 
             ```JSON
             {

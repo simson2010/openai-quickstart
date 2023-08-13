@@ -22,7 +22,7 @@
     cd openai-quickstart
     git checkout feature/enhance_translator_2_0
     ```
-#### 设置虚拟环境并安装需求。
+#### 设置虚拟环境并安装依赖。
 
     在终端运行以下命令。打开终端并将目录更改为本地仓库根目录
 
@@ -32,7 +32,7 @@
     $> python -m pip install -r requirements.txt
     
     ```
-#### 配置OpenAI API密钥和模型
+#### 配置OpenAI API密钥和模型名字
 
     在此仓库根目录的`.env`文件中更新你的模型和OpenAI API密钥。
 
@@ -47,7 +47,7 @@
     ```
     然后打开http://127.0.0.1:5000享受功能。
 
-#### 通过Web服务访问
+### 通过Web服务访问
 
     您可以通过Web服务访问PDF翻译器。您应该向API传递以下参数:
 
@@ -56,9 +56,6 @@
     - pdf_file:您的PDF文件路径,将上传到服务。
 
 #### Web服务请求
-    ```shell
-    $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.pdf" http://127.0.0.1:5000/translate
-    ```
 
 ### 响应:
 
@@ -67,7 +64,12 @@
         - 200: 成功
         - 400: 失败
         - "error": 当状态为400时返回的错误消息。
-    
+
+##### 成功请求
+    ```shell
+    $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.pdf" http://127.0.0.1:5000/translate
+    ```
+
 ##### 成功响应
 
         ```json
@@ -77,13 +79,13 @@
         }
         ```
 
-#### 失败请求
+##### 失败请求
 
         ```shell
         $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.csv" http://127.0.0.1:5000/translate
         ```
 
-#### 响应:
+##### 失败响应:
 
         ```json
         {
