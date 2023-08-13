@@ -17,37 +17,37 @@
 
 #### Clone project. 
 
-        ```shell
-        git clone https://github.com/simson2010/openai-quickstart.git
-        cd openai-quickstart
-        git checkout feature/enhance_translator_2_0
-        ```
+```shell
+$>git clone https://github.com/simson2010/openai-quickstart.git
+$>cd openai-quickstart
+$>git checkout feature/enhance_translator_2_0
+```
 
 #### Setup virtual env and install requirements.
        
-        run below command in your termial. open your termail and chang dir to your local repo root folder
+ run below command in your termial. open your termail and chang dir to your local repo root folder
 
-        ```shell
-        $> python -m venv .venv 
-        $> source ./.venv/bin/activate
-        $> python -m pip install -r requirements.txt
-        ```
+```shell
+$> python -m venv .venv 
+$> source ./.venv/bin/activate
+$> python -m pip install -r requirements.txt
+```
 
 #### Configue your OpenAI API Key and Model
 
-        update your model and OpenAI API key in `.env` file in this repo root.
+update your model and OpenAI API key in `.env` file in this repo root.
 
-        ```shell
-        model_name=gpt-3.5-turbo
-        openai_api_key=your_key
-        ``` 
+```shell
+model_name=gpt-3.5-turbo
+openai_api_key=your_key
+``` 
 
 #### Run Flask app
 
-        ```shell
-        $> python app.py
-        ```
-        then open http://127.0.0.1:5000 to enjoy yourself.
+```shell
+    $> python app.py
+```
+then open http://127.0.0.1:5000 to enjoy yourself.
 
 ### Access via WebService
 
@@ -66,33 +66,33 @@
             - "error": Error message returned when status is 400.
 
 ##### Success Request:
-        ```shell
-        $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.pdf" http://127.0.0.1:5000/translate
+```shell
+$> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.pdf" http://127.0.0.1:5000/translate
 
-        ```
+```
 
 ##### Response
 
-            ```JSON
-            {
-            "file": "http://127.0.0.1:5000/static/pdfs/021986ac-c519-4a6c-b885-31845219f6ca_resultbook.pdf",
-            "status": 200
-            }
-            ```
+```JSON
+{
+    "file": "http://127.0.0.1:5000/static/pdfs/021986ac-c519-4a6c-b885-31845219f6ca_resultbook.pdf",
+    "status": 200
+}
+```
 
 ##### Failed Request
 
-            ```shell
-            $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.csv" http://127.0.0.1:5000/translate
+```shell
+    $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.csv" http://127.0.0.1:5000/translate
 
-            ```
+```
 
 ##### Response:
 
-            ```JSON
-            {
-            "error": "File format incorrect, please provide a valid PDF file instead.",
-            "file": "",
-            "status": 400
-            }
-            ``` 
+```JSON
+{
+    "error": "File format incorrect, please provide a valid PDF file instead.",
+    "file": "",
+    "status": 400
+}
+``` 

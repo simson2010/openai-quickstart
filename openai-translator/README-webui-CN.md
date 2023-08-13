@@ -17,35 +17,37 @@
 
 #### 克隆项目。
  
-    ```shell
-    git clone https://github.com/simson2010/openai-quickstart.git
-    cd openai-quickstart
-    git checkout feature/enhance_translator_2_0
-    ```
+```shell
+$>git clone https://github.com/simson2010/openai-quickstart.git
+$>cd openai-quickstart
+$>git checkout feature/enhance_translator_2_0
+```
+
 #### 设置虚拟环境并安装依赖。
 
-    在终端运行以下命令。打开终端并将目录更改为本地仓库根目录
+在终端运行以下命令。打开终端并将目录更改为本地仓库根目录
 
-    ```shell
-    $> python -m venv .venv
-    $> source ./.venv/bin/activate  
-    $> python -m pip install -r requirements.txt
-    
-    ```
+```shell
+$> python -m venv .venv
+$> source ./.venv/bin/activate  
+$> python -m pip install -r requirements.txt
+
+```
+
 #### 配置OpenAI API密钥和模型名字
 
-    在此仓库根目录的`.env`文件中更新你的模型和OpenAI API密钥。
+在此仓库根目录的`.env`文件中更新你的模型和OpenAI API密钥。
 
-    ```shell
-    model_name=gpt-3.5-turbo
-    openai_api_key=你的密钥
-    ```
+```shell
+model_name=gpt-3.5-turbo
+openai_api_key=你的密钥
+```
 #### 运行Flask应用
 
-    ```shell
-    $> python app.py
-    ```
-    然后打开http://127.0.0.1:5000享受功能。
+```shell
+$> python app.py
+```
+然后打开http://127.0.0.1:5000享受功能。
 
 ### 通过Web服务访问
 
@@ -59,38 +61,38 @@
 
 ##### 响应:
 
-        - "file": 翻译后的内容将保存成新的PDF文件供下载。
-        - "status": 翻译状态,
-        - 200: 成功
-        - 400: 失败
-        - "error": 当状态为400时返回的错误消息。
+- "file": 翻译后的内容将保存成新的PDF文件供下载。
+- "status": 翻译状态,
+- 200: 成功
+- 400: 失败
+- "error": 当状态为400时返回的错误消息。
 
 ##### 成功请求
-    ```shell
+```shell
     $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.pdf" http://127.0.0.1:5000/translate
-    ```
+```
 
 ##### 成功响应
 
-        ```json
-        {
+```json
+    {
         "file": "http://127.0.0.1:5000/static/pdfs/021986ac-c519-4a6c-b885-31845219f6ca_resultbook.pdf", 
         "status": 200
-        }
-        ```
+    }
+```
 
 ##### 失败请求
 
-        ```shell
-        $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.csv" http://127.0.0.1:5000/translate
-        ```
+```shell
+    $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.csv" http://127.0.0.1:5000/translate
+```
 
 ##### 失败响应:
 
-        ```json
-        {
+```json
+    {
         "error": "文件格式不正确,请提供有效的PDF文件。",
         "file": "",
         "status": 400
-        }
-        ```
+    }
+```
