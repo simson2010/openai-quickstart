@@ -12,7 +12,7 @@ class Content:
     def __init__(self, content_type, original, is_title=False, translation=None):
         self.content_type = content_type
         self.original = original
-        self.is_title = istitle
+        self.is_title = is_title
         self.translation = translation
         self.status = False
 
@@ -47,13 +47,22 @@ class TableContent(Content):
             if not isinstance(translation, str):
                 raise ValueError(f"Invalid translation type. Expected str, but got {type(translation)}")
 
-            LOG.debug(translation)
+            LOG.debug(f'[set_translation] translation:{translation}')
             # Convert the string to a list of lists
-            table_data = [row.strip().split() for row in translation.strip().split('\n')]
-            LOG.debug(table_data)
-            # Create a DataFrame from the table_data
-            translated_df = pd.DataFrame(table_data[1:], columns=table_data[0])
-            LOG.debug(translated_df)
+
+            rows = translation.split('||')
+            data_list = [row.split(',') for row in rows]
+            for row in data_list[1:]:
+                row[2] = float(row[2])
+            # Extracting header (first row) as columns
+            columns = data_list[0]
+            LOG.debug(f'[set_translation] columns: {columns}')
+            # Extracting the rest of the data as rows
+            rows = data_list[1:]
+            LOG.debug(f'[set_translation] rows: {rows}')
+            # Creating a DataFrame
+            translated_df = pd.DataFrame(rows, columns=columns)
+            LOG.debug(f'[set_translation] translated_df: \n {type(translated_df)} \n {translated_df}')
             self.translation = translated_df
             self.status = status
         except Exception as e:

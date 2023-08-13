@@ -11,15 +11,21 @@ class OpenAIModel(Model):
         self.model = model
         openai.api_key = api_key
 
-    def make_request(self, prompt):
+    def make_request(self, prompt, **kwargs):
         attempts = 0
+        sys_prompt = f'''
+                    You act as a Translation Master, you understand how to translate PDF file cotent into different language on the world. 
+                    You would help me to translate PDF file content into my flavour language, and keep the text format and font-size and keep the architecture of each page. 
+                    Make is consise and only feed me back the result.
+                    {kwargs['sys_prompt']}
+                    '''
         while attempts < 3:
             try:
                 if self.model == "gpt-3.5-turbo":
                     response = openai.ChatCompletion.create(
                         model=self.model,
                         messages=[
-                            {"role":"system", "content":"You act as a Translation Master, you understand how to translate PDF file cotent into different language on the world. You would help me to translate PDF file content into my flavour language, and keep the text format and font-size and keep the architecture of each page. Make is consise and only feed me back the result"},
+                            {"role":"system", "content": sys_prompt},
                             {"role": "user", "content": prompt}
                         ]
                     )
@@ -28,7 +34,7 @@ class OpenAIModel(Model):
                     response = openai.Completion.create(
                         model=self.model,
                         prompt=prompt,
-                        max_tokens=200,
+                        max_tokens=1000,
                         temperature=0
                     )
                     translation = response.choices[0].text.strip()

@@ -1,23 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Something went wrong!</title>
+    <title>>出错啦!</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
-    <style>
-        html{
-            background-color: rgb(177, 169, 169);
-        }
-    </style>
 </head>
 <body>
-    <div class="error-message">
-        <p class="message-primary">File Format Incorrect</p>
-        <p class="message-secondary">
-            Please select only PDF file instead.
-        </p>
-    </div>
-    <div class="back-button">
-        <a href="/"><button>Back</button></a>
+    <div class="error-container">
+        <h2 class="error-title">错误提示</h2>
+        <div class="error-content">
+            <p>发生了一个错误，文件格式不正确。<br/> 请重新上传PDF文件.</p>
+        </div>
+        <div class="return-button">
+            <a id="submit-button" href="/" class="button">返回</a>
+        </div>
     </div>
 </body>
 </html>

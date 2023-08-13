@@ -8,7 +8,7 @@ class GLMModel(Model):
         self.model_url = model_url
         self.timeout = timeout
 
-    def make_request(self, prompt):
+    def make_request(self, prompt, **kwargs):
         try:
             payload = {
                 "prompt": prompt,

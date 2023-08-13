@@ -30,17 +30,20 @@ process_status_failed=400
 # Rendering the main page
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    output_book = None
+    status = None
     if request.method == 'POST':
         from_language = request.form[param_from_lang]
         to_language = request.form[param_to_lang]
         
         pdf_file = request.files[param_pdf_file]
         if pdf_file and pdf_file.filename.endswith(default_extension):
-            _handlePost(request, pdf_file, from_language, to_language)
+            output_book = _handlePost(request, pdf_file, from_language, to_language)
         else: 
             return render_template(template_error)
+    status = True if output_book else False
         
-    return render_template(template_index)
+    return render_template(template_index, link=output_book, status = status)
 
 # Run as web service
 @app.route('/translate', methods=['POST'])

@@ -4,11 +4,12 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak
+    SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle, PageBreak , Image
 )
 
 from ai_translator.book import Book, ContentType
 from ai_translator.utils import LOG
+import uuid 
 
 class Writer:
     def __init__(self):
@@ -51,12 +52,14 @@ class Writer:
                     if content.content_type == ContentType.TEXT:
                         # Add translated text to the PDF
                         text = content.translation
+                        if text.strip() == '':
+                            text = '   \n'
                         para = Paragraph(text, simsun_style)
                         story.append(para)
 
                     elif content.content_type == ContentType.TABLE:
                         # Add table to the PDF
-                        table = f'\n\n{content.translation}'
+                        table = content.translation
                         table_style = TableStyle([
                             ('BACKGROUND', (0, 0), (-1, 0), colors.grey),
                             ('TEXTCOLOR', (0, 0), (-1, 0), colors.whitesmoke),
@@ -68,9 +71,27 @@ class Writer:
                             ('FONTNAME', (0, 1), (-1, -1), 'SimSun'),  # 更改表格中的字体为 "SimSun"
                             ('GRID', (0, 0), (-1, -1), 1, colors.black)
                         ])
-                        pdf_table = Table(table.values.tolist())
+                        print(f'table: {table.values.tolist()}')
+
+                        # Get column names as the first row
+                        header_row = [table.columns.tolist()]
+                        print(f'header_row: {header_row}')
+                        # Get values as a list
+                        values_list = table.values.tolist()
+                        print(f'values_list: {values_list}')
+                        print(f'header_row + values_list: {header_row + values_list}')
+
+                        pdf_table = Table(header_row + values_list)
                         pdf_table.setStyle(table_style)
                         story.append(pdf_table)
+                    elif content.content_type == ContentType.IMAGE:
+                        # Add image to the PDF
+                        filename = f'{uuid.uuid4()}.png'
+                        filename = os.path.join(os.path.dirname(output_file_path), filename)
+
+                        content.translation.save(filename)
+                        image = Image(filename, width=400, height=400)
+                        story.append(image)    
             # Add a page break after each page except the last one
             if page != book.pages[-1]:
                 story.append(PageBreak())

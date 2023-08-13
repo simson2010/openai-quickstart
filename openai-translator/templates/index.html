@@ -1,34 +1,56 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PDF Translator</title>
+    <title>PDF 文档翻译</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='default.css') }}">
+    <script type="text/javascript">
+        //点击提交按钮后，禁用按钮，防止重复提交, 并显示转换中的提示
+        function submitForm() {
+            document.getElementById("submit-button").disabled = true;
+            document.getElementById("submit-button").innerHTML = "转换中...";
+        }
+    </script>
 </head>
 <body>
-    <h1>PDF Translator</h1>
-    <form method="POST" enctype="multipart/form-data">
-
-        <div class="label-wrap"><label for="from_language">From :</label></div>
-        
-        <select id="from_language" name="from_language">
-            <option value="en">English</option>
-            <option value="fr">French</option>
-            <!-- Add more language options -->
-        </select>
-        <br>
-        <div class="label-wrap"><label for="to_language">To :</label></div>
-        
-        <select id="to_language" name="to_language">
-            <option value="es">Spanish</option>
-            <option value="de">German</option>
-            <!-- Add more language options -->
-        </select>
-        <br>
-        <div class="label-wrap"><label for="pdf_file">Select PDF File:</label></div>
-        <input class="pdf-select" type="file" id="pdf_file" name="pdf_file" accept=".pdf">
-        <br>
-        <div class="btn-wrapper"><button class="btn-translate" type="submit">Translate</button></div>
-        
+    <h1 class="title">PDF 文档翻译</h1>
+    <form method="POST" onsubmit="submitForm()" enctype="multipart/form-data">
+    <div class="form-container">
+        <div class="form-section">
+            <label for="from_language">输入语言：</label>
+            <select id="from_language" name="from_language">
+                <option value="English">English</option>
+                <option value="Chinese">中文</option>
+                <!-- 添加其他语言选项 -->
+            </select>
+        </div>
+        <div class="form-section">
+            <label for="to_language">输出语言：</label>
+            <select id="to_language" name="to_language">
+                <option value="English">English</option>
+                <option value="Chinese" selected>中文</option>
+                <option value="Spanish">Spanish</option>
+                <option value="German">German</option>
+                <!-- 添加其他语言选项 -->
+            </select>
+        </div>
+        <div class="form-section">
+            <label for="pdf_file">选择文件：</label>
+            <input type="file" id="pdf_file" name="pdf_file" accept=".pdf">
+        </div>
+        <div class="form-section">
+            <button id="submit-button" class="submit-button" type="submit" onclick="submitForm">提交</button>
+        </div>
+    </div>
     </form>
+    {% if status %}
+    <div class="dynamic-div">
+        <div>
+            <p>转换完成</p>
+            <div>
+                请点击下载：<a target="_blank" href="{{ link }}" download>PDF 文件</a>
+            </div>
+        </div>
+    </div>
+    {% endif  %}    
 </body>
 </html>
