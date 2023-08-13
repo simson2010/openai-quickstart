@@ -1,5 +1,5 @@
 <p align="center">
-    <br> English | <a href="README-webui.md">中文</a>
+    <br> English | <a href="README-webui-CN.md">中文</a>
 </p>
 
 ## PDF Translator
