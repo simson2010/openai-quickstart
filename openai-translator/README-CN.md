@@ -1,7 +1,7 @@
 # OpenAI-Translator
 
 <p align="center">
-    <br> <a href="README.md"> English </a> | 中文
+    <br> <a href="README.md"> English </a> | 中文 | <a href="README-webui.md"> Web UI</a>
 </p>
 <p align="center">
     <em>所有的代码和文档完全由 OpenAI 的 GPT-4 模型生成</em>
@@ -49,6 +49,8 @@ OpenAI 翻译器目前还处于早期开发阶段，我正在积极地添加更�
 2.OpenAI-翻译器 需要 Python 3.6 或更高版本。使用 `pip install -r requirements.txt` 安装依赖项。
 
 3.设置您的 OpenAI API 密钥(`$OPENAI_API_KEY`)或 ChatGLM 模型 URL(`$GLM_MODEL_URL`)。您可以将其添加到环境变量中，或者在 config.yaml 文件中指定。
+4.如果您想使用WebUI，请阅读此链接获取详细信息。[PDF Translator WebUI](./README-webui.md).
+
 
 ### 使用示例
 
