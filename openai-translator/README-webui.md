@@ -11,7 +11,7 @@
 
 ### How to
 
-    #### Clone project. 
+#### Clone project. 
 
         ```shell
         git clone https://github.com/simson2010/openai-quickstart.git
@@ -19,7 +19,7 @@
         git checkout feature/enhance_translator_2_0
         ```
 
-    #### Setup virtual env and install requirements.
+#### Setup virtual env and install requirements.
        
         run below command in your termial. open your termail and chang dir to your local repo root folder
 
@@ -29,7 +29,7 @@
         $> python -m pip install -r requirements.txt
         ```
 
-    #### Configue your OpenAI API Key and Model
+#### Configue your OpenAI API Key and Model
 
         update your model and OpenAI API key in `.env` file in this repo root.
 
@@ -38,14 +38,14 @@
         openai_api_key=your_key
         ``` 
 
-    #### Run Flask app
+#### Run Flask app
 
         ```shell
         $> python app.py
         ```
         then open http://127.0.0.1:5000 to enjoy yourself.
 
-    #### Access via WebService
+#### Access via WebService
 
         You can access PDF translator via WebSerivce. You should pass below parameters to API: 
 
