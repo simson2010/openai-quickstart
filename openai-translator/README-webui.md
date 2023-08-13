@@ -51,19 +51,19 @@ then open http://127.0.0.1:5000 to enjoy yourself.
 
 ### Access via WebService
 
-        You can access PDF translator via WebSerivce. You should pass below parameters to API: 
+You can access PDF translator via WebSerivce. You should pass below parameters to API: 
 
-        - from_language: Origin language.
-        - to_language: Target language to be translat to.
-        - pdf_file: A path to your PDF file, to be upload to service. 
+- from_language: Origin language.
+- to_language: Target language to be translat to.
+- pdf_file: A path to your PDF file, to be upload to service. 
 
 ##### Response: 
 
-            - "file": Translated content would be saved to a new PDF file for download.
-            - "status": Transalte status, 
-            - 200: success 
-            - 400: failed
-            - "error": Error message returned when status is 400.
+- "file": Translated content would be saved to a new PDF file for download.
+- "status": Transalte status, 
+- 200: success 
+- 400: failed
+- "error": Error message returned when status is 400.
 
 ##### Success Request:
 ```shell

@@ -51,11 +51,11 @@ $> python app.py
 
 ### 通过Web服务访问
 
-    您可以通过Web服务访问PDF翻译器。您应该向API传递以下参数:
+您可以通过Web服务访问PDF翻译器。您应该向API传递以下参数:
 
-    - from_language:源语言。
-    - to_language:目标要翻译成的语言。
-    - pdf_file:您的PDF文件路径,将上传到服务。
+- from_language:源语言。
+- to_language:目标要翻译成的语言。
+- pdf_file:您的PDF文件路径,将上传到服务。
 
 #### Web服务请求
 
