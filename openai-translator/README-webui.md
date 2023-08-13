@@ -57,7 +57,7 @@
         - to_language: Target language to be translat to.
         - pdf_file: A path to your PDF file, to be upload to service. 
 
-#### Response: 
+##### Response: 
 
             - "file": Translated content would be saved to a new PDF file for download.
             - "status": Transalte status, 
@@ -65,7 +65,7 @@
             - 400: failed
             - "error": Error message returned when status is 400.
 
-### Success Request:
+##### Success Request:
         ```shell
         $> curl -X POST -F "from_language=English" -F "to_language=German" -F "pdf_file=@test.pdf" http://127.0.0.1:5000/translate
 
@@ -87,7 +87,7 @@
 
             ```
 
-#### Response:
+##### Response:
 
             ```JSON
             {
