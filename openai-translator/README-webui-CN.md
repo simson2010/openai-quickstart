@@ -1,3 +1,7 @@
+<p align="center">
+    <br> <a href='./README-webui.md'>English</a> | 中文
+</p>
+
 ## PDF翻译器
 
 ### 功能
